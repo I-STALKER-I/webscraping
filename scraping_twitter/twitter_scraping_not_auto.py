@@ -77,13 +77,16 @@ try :
             except Exception :
                 pass
 
-    password_box = driver.find_element('xpath','//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input')
-    password = "S44249032s"
-    password_box.click()
-    password_box.send_keys(password[0])
-    for word in password_box[1:9] :
-        password_box.send_keys(word)
-
+    try :
+        password_box = driver.find_element('xpath','//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input')
+        password = "S44249032s"
+        password_box.click()
+        password_box.send_keys(password[0])
+        for word in password_box[1:9] :
+            password_box.send_keys(word)
+    except Exception :
+        pass
+    
     time.sleep(1)
     password_box.send_keys(password[9]) 
     password_box.send_keys(Keys.ENTER)

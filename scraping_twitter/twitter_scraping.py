@@ -2,13 +2,12 @@ import pyautogui
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup
 import pandas as pd
 import time
 #object of Options class
 op = Options()
 #set .crx file path of extension
+
 op.add_extension('H:\AP projects\scraping\scraping_twitter\Chrome-SetupVPN-3.12.16.crx')
 #set geckodriver.exe path
 driver = webdriver.Chrome('chromedriver.exe',options=op)
@@ -26,6 +25,7 @@ time.sleep(0.3)
 pyautogui.click(1656,240)
 while not pyautogui.pixel(1740,219)[0] == 193 :
     pass
+
 pyautogui.click(1611,194)
 while not pyautogui.pixel(1411,304)[0] == 0 :
     pass
@@ -96,13 +96,16 @@ try :
                 break
             except Exception :
                 pass
+    try :
+        password_box = driver.find_element('xpath','//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input')
+        password = "S44249032s"
+        password_box.click()
+        password_box.send_keys(password[0])
+        for word in password_box[1:9] :
+            password_box.send_keys(word)
+    except Exception :
+        pass
 
-    password_box = driver.find_element('xpath','//*[@id="layers"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input')
-    password = "S44249032s"
-    password_box.click()
-    password_box.send_keys(password[0])
-    for word in password_box[1:9] :
-        password_box.send_keys(word)
 
     time.sleep(1)
     password_box.send_keys(password[9]) 
